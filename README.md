@@ -21,7 +21,7 @@ It is a ionic project, which means a node project, so start installing dependenc
 
 Start it just like a server to run in browser
 ```shell
-  $ ionic serve
+    $ ionic serve
 ```
 
 
@@ -38,5 +38,17 @@ PUG is a HTML pre-compiler, which means that it have a specific semantic to gene
 * __app.component.ts__: basic the same as ng-app/app.js in ionic1 (bootstrap/launch), MyApp hass a rootPage attribute
 * __app.html__: main/initial content loader. the __ion-nav__ root set the initial page, it tag can have settings like switchBack
 * __newPage__:
-  1. all page has it own src folder
-  2. all pages must have a class (.ts) and a template (.html) and ref it into the class 
+    1. create the folder with it name at __./src__;
+    1. create it files __name.html__, __name.ts__, __name.scss__;
+    1. create the class, with export, inside the __.ts__;
+    1. import it into __app.module.ts__;
+        * add to: __declarations__ & to __entryComponents__
+    1. import it into the __tabs.ts__
+        * create a variable referencing it: 
+            ```typescript 
+                tabNRoot: any = NameNewPage; 
+            ```
+        * add it __tabs.html__:
+            ```html
+              <ion-tab [root]="tabNRoot" tabTitle="Title" tabIcon="icon"></ion-tab>
+            ```
