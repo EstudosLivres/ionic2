@@ -14,3 +14,13 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+// Import theme files
+@import "../theme/addons/mdi-icons";
+
+// Import modules/pages styles
+@import "../pages/about/about";
+@import "../pages/account/account";
+@import "../pages/contact/contact";
+@import "../pages/wallet/wallet";
+@import "../pages/home/home";
