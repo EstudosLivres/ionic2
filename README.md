@@ -1,6 +1,5 @@
 # ionic2 study
-Studying ionic2, angular2 & typescript
-
+Studying ionic2, angular2 & typescript (a YouTube look like theme)
 
 ## Set it up
 
@@ -47,10 +46,16 @@ PUG is a HTML pre-compiler, which means that it have a specific semantic to gene
     1. Manually:
         1. create the folder with it name at __./src__;
         1. create it files __name.html__, __name.ts__, __name.scss__;
-        1. create the class, with export, inside the __.ts__;
+        1. create the class, with __export__, inside the __.ts__;
+            ```typescript
+               export class NameNewPage {}
+            ```
         1. import it into __app.module.ts__;
             * add to: __declarations__ & to __entryComponents__
-        1. import it into the __tabs.ts__
+            ```typescript
+               import {NameNewPage} from '../pages/name_new_page/name_new_page';
+            ```
+        1. import it into the __tabs.ts__:
             * create a variable referencing it: 
                 ```typescript 
                     tabNRoot: any = NameNewPage; 
@@ -59,3 +64,4 @@ PUG is a HTML pre-compiler, which means that it have a specific semantic to gene
                 ```html
                   <ion-tab [root]="tabNRoot" tabTitle="Title" tabIcon="icon"></ion-tab>
                 ```
+        1. 
