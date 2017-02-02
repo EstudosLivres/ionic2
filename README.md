@@ -60,8 +60,40 @@ PUG is a HTML pre-compiler, which means that it have a specific semantic to gene
                 ```typescript 
                     tabNRoot: any = NameNewPage; 
                 ```
-            * add it __tabs.html__:
+            * add it __tabs.html__ (here the tabNRoot change state which change property val):
                 ```html
                   <ion-tab [root]="tabNRoot" tabTitle="Title" tabIcon="icon"></ion-tab>
                 ```
-        1. 
+* __Pipe and Filter Angular__:
+    1. Just the same like angular1, just the directive has changed. [Angular2 Pipe Docs](https://angular.io/docs/ts/latest/api/#!?query=pipe).
+        ```html
+           <tag *ngFor="array | filter:arg1:arg2"></tag>
+        ```
+
+
+* __Binding Dynamic HTML Properties & Events__:
+    1. Dynamic attr with no overwrite warnings:
+        ```html
+           <tag [anyProperty]="classAttrO.attrORexpression"></tag>
+        ```
+    1. Right Way to dynamic change/bind property (do not use [class]="expression", because it overwrite all classes)
+        ```html 
+            <tag [class.nameClassToShowIfExpressionOK]="obj.attrORexpression"></tag> 
+        ```
+    1. Dynamic Event (use "()" intead of "[]"))
+        ```html
+           <tag (click)="componentMethod()"></tag>
+        ```
+    1. Additional event datas
+        ```html
+           <input type="text" (keydown)="showKey($event)">
+        ```
+        
+        ```typescript
+           class AnyClass {
+               showKey(event) {
+                   alert(event.keyCode);    
+               }
+           }
+        ```
+    
