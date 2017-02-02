@@ -96,4 +96,90 @@ PUG is a HTML pre-compiler, which means that it have a specific semantic to gene
                }
            }
         ```
+    1. The default Angular2 ngModel works good (notice: "()" means ngModel is an event (one-way-binding) and "[]", means it is a tag attr (the other one-way-binding)):
+        ```html
+           <input type="text" [(ngModel)]="componentClassAttr">
+        ```
     
+* Dependency Injection
+    1. Sign the Service as Injectable and define it constructor method
+        ```typescript
+           import {Injectable} from '@angular/core';
+           @Injectable()
+           export class NameClassService {
+               obj;
+               getService() {
+                   return this.obj;
+               }
+           }
+        ```
+    1. Turn it visible adding on main.ts in provider section
+        ```typescript
+           import {NameClassService} from './name-class.service';
+           
+           @NgModule({
+               providers: [NameClassService]
+           })
+        ```
+    1. Import it on a component and create the constructor
+        ```typescript
+             constructor(private raceService: RaceService){}
+        ```
+    1. add it to ngOnInit
+        ```typescript
+            export class Component {
+               ngOnInit() {
+                   this.races = this.raceService.getRaces();
+               }
+           }
+        ```
+* Http
+    1. ensure to include http libs  (__main.ts__)
+        ```typescript
+           // HttpModule already have provider http defined
+           import {HttpModule} from '@angular/http';
+           @NgModule({
+               import: [HttpModule]
+           })
+        ```
+    1. tell injector about http provider (__app.component.ts__)
+    1. inject the http dependency into the service (__service.ts__)
+        ```typescript
+           import {Injectable} from '@angular/core';
+           import {CarPart} from './car-part';
+           import {Http} from '@angular/http';
+           import 'rxjs/add/operator/map';
+    
+           @Injectable()
+           export class DataService {
+               constructor(private http: Http){}
+               getCarParts() {
+                   let obervable = this.http.get(URL);
+                   // response = param var name for callback function
+                   // foreach response (response.json)
+                   // .data = the JSON attr
+                   return obervable.map(response => <CarPart[]> response.json().data);
+               }   
+           }
+        ```
+    1. Listen data returned from the request (__component.ts__)
+        ```typescript
+           export class Component {
+               ngOnInit() {
+                   // carParts = param var name for callback function
+                   this.dataService.getCarParts()
+                       .subscribe(carParts => this.carParts = carParts);
+               }
+           }
+        ```
+    1. Preventing async bug (expecting some var that is fetching from server)
+        ```
+            .. class ... {
+                totalCarParts() {
+                    if(Array.isArray(this.carParts)) {
+                        for ...
+                            sum += this.carPart...
+                    }
+                } 
+           }
+        ```

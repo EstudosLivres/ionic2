@@ -7,6 +7,7 @@ import {NavController} from 'ionic-angular';
     templateUrl: 'home.html'
 })
 export class HomePage {
+    username = 'usernameTest';
     videos = [
         'Video 1',
         'Video 2'

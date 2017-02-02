@@ -18,6 +18,12 @@
 </ion-header>
 
 <ion-content class="card-background-page">
+    <!-- ngModel just works -->
+    <ion-item>
+        <ion-label>{{ username }}</ion-label>
+        <ion-input type="text" [(ngModel)]="username"></ion-input>
+    </ion-item>
+
     <ion-card class="card-img-bg">
         <img src="assets/imgs/posts/post-1.jpg">
         <div class="card-title">
